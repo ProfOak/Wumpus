@@ -3,7 +3,7 @@ from Player import Player
 
 class Wumpus():
     def __init__(self, size=10):
-        """ Initiate a wumpus game """
+        """ Initiate a wumpus game, default size = 10 """
         self.size = size
         # Board determined by size
         self.world = [ [ Tile() for t in range(size)] for i in range(size) ]
@@ -28,19 +28,24 @@ class Wumpus():
         for i in range(self.size):
             for j in range(self.size):
                 if self.player.location == [i, j]:
-                    print "P ",
+                    print self.player.character,
                 else:
                     print "# ",
             print
     def message(self, msg1, msg2="", msg3=" "):
+        """ output a message to the screen of a specific format """
+
         """
+        EXAMPLE
         ====================================
-        | (1, 1) | sbWPG
-        | You move left!
+        | You are facing south [1, 2]
+        | You move forward
         | It stinks in here!
-        | It's cold in here!
         | You meet the Wumpus (RIP)
-        | It's a long drop from here! (rip)
+        | It's cold in here!
+        | It's a long drop (RIP)
+        | Oo shiny!
+        | You found the gold! Congrats!
         =====================================
 
         """
@@ -53,26 +58,40 @@ class Wumpus():
     def game_loop(self):
         """ Game driver """
         # resolve 
+        last_cmd_msg = "Welcome to the Wumpus World"
         while self.player.alive or self.wumpus.alive:
+
+            self.message(last_cmd_msg, "You are facing %s %s" % (self.player.direction, self.player.location))
             self.print_board()
             cmd = raw_input("> ")
             if cmd == "q":
                 break
             # movement controls
-            elif cmd == "l" and self.player.location[1] != 0 :
-                self.player.location[1] -= 1
-                self.message("You have moved left!")
-            elif cmd == "r" and self.player.location[1] != self.size - 1:
-                self.player.location[1] += 1
-                self.message("You have moved right!")
-            elif cmd == "u" and self.player.location[0] != 0:
-                self.player.location[0] -= 1
-                self.message("You have moved up!")
-            elif cmd == "d" and self.player.location[0] != self.size - 1:
-                self.player.location[0] += 1
-                self.message("You have moved down!")
+
+            elif cmd == "f":
+                # move forward
+                d = self.player.direction
+                if d == "west" and self.player.location[1] != 0:
+                    self.player.location[1] -= 1
+                elif d == "east" and self.player.location[1] != self.size - 1:
+                    self.player.location[1] += 1
+                elif d == "north" and self.player.location[0] != 0:
+                    self.player.location[0] -= 1
+                elif d == "south" and self.player.location[0] != self.size - 1:
+                    self.player.location[0] += 1
+                else:
+                    last_cmd_msg = "There's a wall in your path"
+                    continue
+                last_cmd_msg = "You have moved forward"
+                # /move forward
+
+            elif cmd == "l":
+                self.player.left()
+            elif cmd == "r":
+                self.player.right()
             # /movement controls
             else:
-                self.message("Sorry, didn't understand that command")
-w = Wumpus(4).game_loop()
+                last_cmd_msg = "Sorry, didn't understand that command"
+
+Wumpus(4).game_loop()
 

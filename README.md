@@ -28,4 +28,5 @@ Status keywords
 * (b) Breeze - It got cold in here!
 * (W) Wumpus - RIP
 * (P) Pit    - It's a long drop
-* (G) Golld  - Congrats!
+* (G) Gold   - Congrats!
+* (E) Scream - You hear a loud scream as the Wumpus falls
