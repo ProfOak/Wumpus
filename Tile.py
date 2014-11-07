@@ -23,6 +23,13 @@ class Tile():
         if s not in self.contains:
             self.contains += s
 
+    def has_hazard(self):
+        return len(self.contains) > 0
+
+    def has_death(self):
+        # if wumpus or pit in squre
+        return "W" in self.contains or "P" in self.contains
+
     def to_string(self):
         s = ""
         # upper case for fatal dangers

@@ -9,6 +9,9 @@ class Wumpus():
         self.world = [ [ Tile() for t in range(size)] for i in range(size) ]
         
         self.player = Player([0, 0])
+        self.world[1][1].add("W")
+        self.world[2][2].add("b")
+
 
         # generate random location for wumpus
         # wumpus is a non-moving player
@@ -28,6 +31,10 @@ class Wumpus():
             for j in range(self.size):
                 if self.player.location == [i, j]:
                     print self.player.character,
+                elif self.world[i][j].has_death():
+                    print "! ",
+                elif self.world[i][j].has_hazard():
+                    print "? ",
                 else:
                     print "# ",
             print
