@@ -7,7 +7,6 @@ class Wumpus():
         self.size = size
         # Board determined by size
         self.world = [ [ Tile() for t in range(size)] for i in range(size) ]
-        self.world[0][0].player = True
         
         self.player = Player([0, 0])
 

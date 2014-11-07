@@ -3,41 +3,24 @@ class Player():
         """ stats for player character and wumpus """
         self.location = location
         # You can't make dead people, sorry
-        self.alive = True    
-        self.direction = "east"
-        self.character = "> "
+        self.alive = True
+        # clockwise
+        self.n = 0 # used as index for d and c
+        self.d = ["east", "south", "west", "north"]
+        self.direction = self.d[0] # east
+
+        self.c = ["> ", "v ", "< ", "^ "]
+        self.character = self.c[0] # >
 
     def right(self):
-        if self.direction == "east":
-            self.direction = "north" 
-            self.character = "^ "
-        
-        elif self.direction == "north":
-            self.direction = "west"
-            self.character = "< "
-        
-        elif self.direction == "west":
-            self.direction = "south"
-            self.character = "v "
-        
-        else:
-            self.direction = "east"
-            self.character = "> "
+        self.n = (self.n + 1) % 4
+
+        self.direction = self.d[self.n]
+        self.character = self.c[self.n]
 
     def left(self):
-        if self.direction == "east":
-            self.direction = "south" 
-            self.character = "v "
-        
-        elif self.direction == "south":
-            self.direction = "west"
-            self.character = "< "
-        
-        elif self.direction == "west":
-            self.direction = "north"
-            self.character = "^ "
-        
-        else:
-            self.direction = "east"
-            self.character = "> "
+        self.n = (self.n - 1) % 4
+
+        self.direction = self.d[self.n]
+        self.character = self.c[self.n]
 
