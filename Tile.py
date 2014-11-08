@@ -1,7 +1,7 @@
 class Tile():
     def __init__(self, wumpus=False, pit=False, gold=False, player=False, smell=False, breeze=False):
         """ Each tile on the board is this """
-                self.wumpus = wumpus
+        self.wumpus = wumpus
         self.smell = smell
         self.pit = pit
         self.breeze = breeze
@@ -16,11 +16,11 @@ class Tile():
 
     def add_breeze(self):
         """ breeze intended to be added by wumpus class, after deciding where pits reside """
-        self.breeze = true
+        self.breeze = True
 
     def add_smell(self):
         """ smell inteded to be added by wumpus class, after deciding where the wumpus resides """
-        self.smell = true
+        self.smell = True
 
     def add_gold(self):
         """ place a gold for someone to find """
