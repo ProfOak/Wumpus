@@ -1,49 +1,67 @@
 class Tile():
     def __init__(self, wumpus=False, pit=False, gold=False, player=False, smell=False, breeze=False):
         """ Each tile on the board is this """
-        # a tile can possibly contain =  WsPbD
-        # Used for printing purposes only
+                self.wumpus = wumpus
+        self.smell = smell
+        self.pit = pit
+        self.breeze = breeze
+        self.gold = gold
+    
+    def add_wumpus(self):
+        """ add wumpus to current tile """
+        self.wumpus = True
+
+    def add_pit(self):
+        self.pit = True
+
+    def add_breeze(self):
+        """ breeze intended to be added by wumpus class, after deciding where pits reside """
+        self.breeze = true
+
+    def add_smell(self):
+        """ smell inteded to be added by wumpus class, after deciding where the wumpus resides """
+        self.smell = true
+
+    def add_gold(self):
+        """ place a gold for someone to find """
+        self.gold = True
+
+    def has_hazard(self):
+        """ hazards indicate danger, but do not cause death """
+        return self.smell or self.breeze
+
+    def has_death(self):
+        """ beware these tiles """
+        return self.wumpus or self.pit
+    
+    def has_gold(self):
+        """ congrats! you win the game """
+        return self.gold
+
+    def to_string(self):
+        """ printable version of the dangers and hazards """
+
+        s = ""
+        # a tile can possibly contain =  WsPbG
         # W = wumpus
         # s = Smell
         # P = Pit
         # b = Breeze
         # G = Gold
-        self.contains = ""
         
-        """
-        self.wumpus = wumpus
-        self.smell = smell
-        self.pit = pit
-        self.breeze = breeze
-        self.gold = gold
-        # self.player = player
-        """
-    
-    def add(self, s):
-        if s not in self.contains:
-            self.contains += s
-
-    def has_hazard(self):
-        return len(self.contains) > 0
-
-    def has_death(self):
-        # if wumpus or pit in squre
-        return "W" in self.contains or "P" in self.contains
-
-    def to_string(self):
-        s = ""
+        # Used for printing purposes only
         # upper case for fatal dangers
         # lower case for dangerous indicators
 
         if self.wumpus:
             s += "W"
-        elif self.smell:
+        if self.smell:
             s += "s"
-        elif self.pit:
+        if self.pit:
             s += "P"
-        elif self.breeze:
+        if self.breeze:
             s += "b"
-        elif self.gold:
+        if self.gold:
             s += "G"
 
         return s
