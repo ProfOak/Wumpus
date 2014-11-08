@@ -2,8 +2,10 @@ class Player():
     def __init__(self, location):
         """ stats for player character and wumpus """
         self.location = location
+
         # You can't make dead people, sorry
         self.alive = True
+        
         # clockwise
         self.n = 0 # used as index for d and c
         self.d = ["east", "south", "west", "north"]
