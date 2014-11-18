@@ -1,6 +1,7 @@
 class Tile():
-    def __init__(self, wumpus=False, pit=False, gold=False, player=False, smell=False, breeze=False):
+    def __init__(self, visited=False, wumpus=False, pit=False, gold=False, player=False, smell=False, breeze=False):
         """ Each tile on the board is this """
+        self.visited = visited
         self.wumpus = wumpus
         self.smell = smell
         self.pit = pit
@@ -12,6 +13,7 @@ class Tile():
         self.wumpus = True
 
     def add_pit(self):
+        """ adds put to the current tile """
         self.pit = True
 
     def add_breeze(self):

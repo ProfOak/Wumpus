@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
     (options, args) = parser.parse_args()
     # Let's be reasonable here
-    if options.size > 40:
-        size = 40
+    if options.size > 26:
+        size = 26
     else:
         size = options.size
     Wumpus(size).game_loop()
