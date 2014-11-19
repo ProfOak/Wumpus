@@ -30,4 +30,5 @@ class Player():
         self.character = self.c[self.n]
 
     def get_location(self):
+        """ location of player """
         return self.location[0], self.location[1]

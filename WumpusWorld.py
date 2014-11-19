@@ -9,7 +9,7 @@ class Wumpus():
         # Initially blank board, but you can recall memories from your travels
 
         # remove visited=True, for a partially observable board
-        self.world  = [ [ Tile(visited=True) for t in range(size)] for i in range(size) ]
+        self.world  = [ [ Tile() for t in range(size)] for i in range(size) ]
         # Board with all secrets uncovered
         # The teacher's manual of game boards
         #self.solved = [ [ Tile(visited=True) for t in range(size)] for i in range(size) ]
@@ -153,8 +153,10 @@ class Wumpus():
                 last_cmd_msg = "Your screams become hard to hear as you descend [RIP]"
             
             elif self.world[i][j].breeze:
+                self.world[i][j].visit()
                 last_cmd_msg = "Is it cold in here, or is it just me?"
             elif self.world[i][j].smell:
+                self.world[i][j].visit()
                 last_cmd_msg = "It stinks in here!"
 
 

@@ -13,7 +13,7 @@ class Tile():
         self.wumpus = True
 
     def add_pit(self):
-        """ adds put to the current tile """
+        """ adds pit to the current tile """
         self.pit = True
 
     def add_breeze(self):
@@ -27,6 +27,10 @@ class Tile():
     def add_gold(self):
         """ place a gold for someone to find """
         self.gold = True
+    
+    def visit(self):
+        """ you have visited the tile """
+        self.visited = True
 
     def has_hazard(self):
         """ hazards indicate danger, but do not cause death """
